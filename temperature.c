@@ -12,7 +12,7 @@ int find_string(const char *str, const char *substr)
     return (strstr(str, substr) != NULL);
 }
 
-float read_temperature() 
+float read_temperature()
 {
     FILE *file;
     char buffer[256];
@@ -21,23 +21,7 @@ float read_temperature()
     int crc = 0;
     int attempts = 0;
 
-    while(1) 
-    {
-        file = fopen(SENSOR, "r");
-
-        if (file != NULL)
-        {
-            break;
-        }
-
-        if (++attempts >= 6) 
-        {
-            return EXIT_FAILURE;
-        }
-
-        sleep(3);
-    }
-
+    file = fopen(SENSOR, "r");
 
     while (fgets(buffer, sizeof(buffer), file) != NULL)
     {

@@ -1,11 +1,11 @@
-#include "pwm.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "pwm.h"
+
 #define PWM "/sys/class/pwm/pwmchip0/pwm0/"
 
-int pwm_enable() 
+int pwm_enable()
 {
     FILE *enable = fopen(PWM "enable", "w");
 
@@ -20,7 +20,7 @@ int pwm_enable()
     return EXIT_SUCCESS;
 }
 
-int pwm_disable() 
+int pwm_disable()
 {
     FILE *enable = fopen(PWM "enable", "w");
 
@@ -35,37 +35,41 @@ int pwm_disable()
     return EXIT_SUCCESS;
 }
 
-// int pwm_period(int *value) 
-// {
-//     FILE *period = fopen(PWM "period", "w");
+int new_period = 0;
+int new_duty = 0;
 
-//     if (period == NULL)
-//     {
-//         return EXIT_FAILURE;
-//     }
+int pwm_period(int *value)
+{
+    FILE *period = fopen(PWM "period", "w");
 
-//     int new_value = value * 1000000;
-    
-//     fprintf(period, "%d", new_value);
-//     fclose(period);
+    if (period == NULL)
+    {
+        return EXIT_FAILURE;
+    }
 
-//     return EXIT_SUCCESS;
-// }
+    // converte de milissegundos  para nanossegundos
+    new_period = (*value) * 1000000;
 
-// int pwm_duty(int *value) 
-// {
-//     FILE *duty_cycle = fopen(PWM "duty_cycle", "w");
+    fprintf(period, "%d", new_period);
+    fclose(period);
 
-//     if (duty_cycle == NULL)
-//     {
-//         return EXIT_FAILURE;
-//     }
+    return EXIT_SUCCESS;
+}
 
-//     int new_value = value * 1000000;
-    
-//     fprintf(duty_cycle, "%d", new_value);
-//     fclose(duty_cycle);
+int pwm_duty(int *value)
+{
+    FILE *duty = fopen(PWM "duty_cycle", "w");
 
-//     return EXIT_SUCCESS;
-// }
+    if (duty == NULL)
+    {
+        return EXIT_FAILURE;
+    }
 
+    // converte de percentual para nanossegundos
+    new_duty = ((new_period * (*value)) / 100) * 1000000;
+
+    fprintf(duty, "%d", new_duty);
+    fclose(duty);
+
+    return EXIT_SUCCESS;
+}
