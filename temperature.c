@@ -1,9 +1,9 @@
-#include "temperature.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#include "temperature.h"
 
 #define SENSOR "/sys/bus/w1/devices/28-3c01e076c2a0/w1_slave"
 
@@ -19,18 +19,25 @@ float read_temperature()
     char device[20];
     char temp[10];
     int crc = 0;
-    int attempts = 0;
 
     file = fopen(SENSOR, "r");
 
-    while (fgets(buffer, sizeof(buffer), file) != NULL)
+    if (file == NULL)
+    {
+        return -1;
+    }
+
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
     {
         if (find_string(buffer, "crc") && find_string(buffer, "YES"))
         {
             crc = 1;
             sscanf(buffer, "%[^:]", device);
         }
+    }
 
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+    {
         if (crc && find_string(buffer, "t="))
         {
             sscanf(buffer, "%*[^=]=%s", temp);
@@ -40,5 +47,5 @@ float read_temperature()
 
     fclose(file);
 
-    return EXIT_SUCCESS;
+    return 0;
 }
