@@ -34,8 +34,8 @@ int pwm_disable()
     return 0;
 }
 
-int new_period = 0;
-int new_duty = 0;
+long new_period = 0;
+long new_duty = 0;
 
 int pwm_period(int value)
 {
@@ -65,8 +65,7 @@ int pwm_duty(int value)
     }
 
     // converte de percentual para nanossegundos
-    // new_duty = ((new_period * (*value)) / 100) * 1000000;
-    new_duty = value * 100000;
+    new_duty = (new_period * value) / 100;
 
     fprintf(duty, "%d", new_duty);
     fclose(duty);

@@ -27,24 +27,24 @@ int main()
             // return -1;
         }
 
-        if (temperature >= 31)
-        {
-            temp = 90;
-            if (temp != duty)
-            {
-                speed_transition(duty, temp, 1);
-                duty = temp;
-            }
-        }
-        else if (temperature >= 30.5)
-        {
-            temp = 10;
-            if (temp != duty)
-            {
-                speed_transition(duty, temp, 1);
-                duty = temp;
-            }
-        }
+        // if (temperature >= 31)
+        // {
+        //     temp = 90;
+        //     if (temp != duty)
+        //     {
+        //         speed_transition(duty, temp, 1);
+        //         duty = temp;
+        //     }
+        // }
+        // else if (temperature >= 30.5)
+        // {
+        //     temp = 10;
+        //     if (temp != duty)
+        //     {
+        //         speed_transition(duty, temp, 1);
+        //         duty = temp;
+        //     }
+        // }
 
         printf("%.3f\n", temperature);
         usleep(50000);
