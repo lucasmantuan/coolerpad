@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 #include "motor.h"
-#include "pwm.h"
+#include "../pwm/pwm.h"
 
 void speed_transition(int initial, int final, int time)
 {

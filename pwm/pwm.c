@@ -49,7 +49,7 @@ int pwm_period(int value)
     // converte de milissegundos para nanossegundos
     new_period = value * 100000;
 
-    fprintf(period, "%d", new_period);
+    fprintf(period, "%ld", new_period);
     fclose(period);
 
     return 0;
@@ -67,7 +67,7 @@ int pwm_duty(int value)
     // converte de percentual para nanossegundos
     new_duty = (new_period * value) / 100;
 
-    fprintf(duty, "%d", new_duty);
+    fprintf(duty, "%ld", new_duty);
     fclose(duty);
 
     return 0;

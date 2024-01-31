@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "temperature.h"
-#include "pwm.h"
-#include "motor.h"
+#include "temperature/temperature.h"
+#include "pwm/pwm.h"
+#include "motor/motor.h"
 
 int main()
 {
@@ -20,6 +20,7 @@ int main()
     while (1)
     {
         float temperature = read_temperature();
+        printf("%.3f\n", temperature);
 
         if (temperature == -1)
         {
@@ -27,26 +28,25 @@ int main()
             // return -1;
         }
 
-        // if (temperature >= 31)
-        // {
-        //     temp = 90;
-        //     if (temp != duty)
-        //     {
-        //         speed_transition(duty, temp, 1);
-        //         duty = temp;
-        //     }
-        // }
-        // else if (temperature >= 30.5)
-        // {
-        //     temp = 10;
-        //     if (temp != duty)
-        //     {
-        //         speed_transition(duty, temp, 1);
-        //         duty = temp;
-        //     }
-        // }
+        if (temperature >= 33)
+        {
+            temp = 90;
+            if (temp != duty)
+            {
+                speed_transition(duty, temp, 1);
+                duty = temp;
+            }
+        }
+        else if (temperature >= 32.6)
+        {
+            temp = 10;
+            if (temp != duty)
+            {
+                speed_transition(duty, temp, 1);
+                duty = temp;
+            }
+        }
 
-        printf("%.3f\n", temperature);
         usleep(50000);
     }
 
