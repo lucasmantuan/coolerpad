@@ -1,6 +1,9 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 
-void speed_transition(int initial, int final, int time);
+int speed_transition(int initial, int final, int time);
+int backward();
+int forward();
+int turn_off();
 
 #endif
