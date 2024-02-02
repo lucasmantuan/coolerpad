@@ -1,1 +1,1 @@
-# Coolerpad
+# Coolerpad com Cubieboard

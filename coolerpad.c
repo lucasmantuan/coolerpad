@@ -32,26 +32,39 @@ int main()
             // return -1;
         }
 
-        if (temperature >= 29.5)
+        if (temperature >= 30)
         {
             temp = 100;
             if (temp != duty)
             {
+                forward();
                 speed_transition(duty, temp, 1);
                 duty = temp;
             }
         }
-        else if (temperature >= 28.5)
+        else if (temperature >= 29)
         {
             temp = 40;
             if (temp != duty)
             {
+                forward();
                 speed_transition(duty, temp, 1);
                 duty = temp;
             }
         }
+        else if (temperature >= 28)
+        {
+            temp = 20;
+            if (temp != duty)
+            {
+                forward();
+                speed_transition(duty, temp, 1);
+                duty = temp;
+                turn_off();
+            }
+        }
 
-        usleep(150000);
+        sleep(2);
     }
 
     return 0;
