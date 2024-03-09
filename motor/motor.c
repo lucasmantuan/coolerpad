@@ -76,8 +76,8 @@ int turn_off()
 int speed_transition(int initial, int final, int time)
 {
 
-    int steps = abs((initial - final) / 10);
-    int step_value = 10;
+    int step_value = 1;
+    int steps = abs((initial - final) / step_value);
 
     if (initial <= final)
     {
