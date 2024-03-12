@@ -13,16 +13,9 @@ int main()
     float temperature = 0.0;
 
     float period = 5;
-    int duty = 20;
+    int duty = 30;
     int temp = 0;
-
-    // turn_off();
-    // pwm_disable();
-    // pwm_period(period);
-    // pwm_duty(duty);
-    // pwm_enable();
-    // forward();
-
+    
     while (1)
     {
         temperature = read_temperature();
@@ -36,37 +29,46 @@ int main()
             // return -1;
         }
 
-        // acima de 30 graus
-        if (temperature >= 30)
+        // acima de 35 graus
+        if (temperature >= 35)
         {
             temp = 100;
             if (temp != duty)
             {
-                forward();
-                speed_transition(duty, temp, 5);
+                speed_control(period, duty);
+                speed_transition(duty, temp, 2);
                 duty = temp;
             }
         }
-        // entre 29 e 29.9 graus
-        else if (temperature >= 29)
+        // entre 33 e 34.9 graus
+        else if (temperature >= 33)
         {
-            temp = 40;
+            temp = 80;
             if (temp != duty)
             {
-                forward();
-                speed_transition(duty, temp, 5);
+                speed_control(period, duty);
+                speed_transition(duty, temp, 2);
                 duty = temp;
             }
         }
-        // até 28.9 graus
+        // entre 31 e 32.9 graus
+        else if (temperature >= 31)
+        {
+            temp = 60;
+            if (temp != duty)
+            {
+                speed_control(period, duty);
+                speed_transition(duty, temp, 2);
+                duty = temp;
+            }
+        }
+        // até 30.9 graus
         else if (temperature >= 0)
         {
-            temp = 20;
+            temp = 0;
             if (temp != duty)
             {
-                forward();
-                speed_transition(duty, temp, 5);
-                turn_off();
+                speed_control(period, temp);
                 duty = temp;
             }
         }
