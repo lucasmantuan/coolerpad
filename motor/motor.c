@@ -4,6 +4,27 @@
 
 #include "motor.h"
 #include "../pwm/pwm.h"
+#define PIN97 "/sys/class/gpio/gpio97/"
+
+int turn_on()
+{
+    FILE *pin = fopen(PIN97 "value", "w");
+
+    fprintf(pin, "%d", 1);
+    fclose(pin);
+
+    return 0;
+}
+
+int turn_off()
+{
+    FILE *pin = fopen(PIN97 "value", "w");
+
+    fprintf(pin, "%d", 0);
+    fclose(pin);
+
+    return 0;
+}
 
 int speed_control(int period, int duty)
 {
