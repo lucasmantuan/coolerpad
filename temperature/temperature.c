@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 #include "temperature.h"
-#define SENSOR "/sys/bus/w1/devices/28-3c01e076c2a0/w1_slave"
+#define SENSOR "/sys/bus/w1/devices/28-000000656035/w1_slave"
 
 int find_string(const char *str, const char *substr)
 {
