@@ -4,11 +4,11 @@
 
 #include "motor.h"
 #include "../pwm/pwm.h"
-#define PIN120 "/sys/class/gpio/gpio120/"
+#define PIN231 "/sys/class/gpio/gpio231/"
 
 int turn_on()
 {
-    FILE *pin = fopen(PIN120 "value", "w");
+    FILE *pin = fopen(PIN231 "value", "w");
 
     fprintf(pin, "%d", 1);
     fclose(pin);
@@ -18,7 +18,7 @@ int turn_on()
 
 int turn_off()
 {
-    FILE *pin = fopen(PIN120 "value", "w");
+    FILE *pin = fopen(PIN231 "value", "w");
 
     fprintf(pin, "%d", 0);
     fclose(pin);

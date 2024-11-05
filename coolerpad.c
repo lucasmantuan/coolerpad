@@ -39,6 +39,7 @@ int main()
 
         if (temperature == -1)
         {
+            turn_off();
             break;
             // return -1;
         }
