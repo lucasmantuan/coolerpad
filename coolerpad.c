@@ -12,7 +12,6 @@ void handle_signal(int signal)
 {
     speed_control(5.0, 0);
     turn_off();
-
     exit(0);
 }
 
@@ -21,6 +20,7 @@ int main()
     signal(SIGINT, handle_signal);
     signal(SIGTERM, handle_signal);
     signal(SIGKILL, handle_signal);
+    signal(SIGSEGV, handle_signal);
 
     // FILE *log = fopen("/var/www/html/log.txt", "w");
     float temperature = 0.0;
@@ -100,7 +100,7 @@ int main()
         }
 
         // fflush(log);
-        sleep(10);
+        sleep(20);
     }
 
     return 0;
