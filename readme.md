@@ -1,9 +1,8 @@
 # Coolerpad
 
-Mini projeto que implementa um sistema de refrigeração para notebooks utilizando Armbian e Cubieboard. Este sistema mede a temperatura expelida pelo exaustor do notebook e ajusta a velocidade de um cooler em intervalos de temperatura predefinidos.
+Mini projeto que implementa um sistema de refrigeração para notebooks utilizando Armbian e Cubieboard. Este sistema mede a temperatura expelida pelo exaustor do notebook e ajusta a velocidade de um cooler em intervalos de temperatura predefinidos. Foi desenvolvido com o objeto de aprender e explorar a utlização de SBC (Single Board Computer). 
 
-Este mini projeto foi desenvolvido com o objeto de aprender e explorar a utlização de SBC (Single Board Computer). Sugestões e ideias para melhorias são sempre bem-vindas!
-
+Sugestões e ideias para melhorias são sempre bem-vindas!
 
 ### Componentes
 - Cubieboard executando Armbian Linux.
